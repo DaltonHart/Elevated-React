@@ -5,6 +5,7 @@ let colors = require('colors')
 let fs = require('fs')
 let templates = require('./templates/templates.js')
 let models = require('./models/models.js')
+let components = require('./components/components.js')
 
 let appName = process.argv[2]
 let appDirectory = `${process.cwd()}/${appName}`
@@ -92,6 +93,17 @@ const updateTemplates = () => {
                     res()
                 })
                 console.log(`models made`)
+            })
+        })
+        Object.keys(components).forEach((fileName, i) => {
+            promises[i] = new Promise(res => {
+                fs.writeFile(`${appDirectory}/src/components/${fileName}`, components[fileName], function (err) {
+                    if (err) {
+                        return console.log(err)
+                    }
+                    res()
+                })
+                console.log(`components made`)
             })
         })
         Promise.all(promises).then(() => {
