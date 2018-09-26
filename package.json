@@ -1,0 +1,27 @@
+{
+  "name": "sassy-react",
+  "version": "1.0.0",
+  "description": "An extention of Create-React-App to include more features.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaltonHart/Sassy-React.git"
+  },
+  "keywords": [
+    "react",
+    "boilerplate"
+  ],
+  "author": "dalton daltonhart.j@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DaltonHart/Sassy-React/issues"
+  },
+  "homepage": "https://github.com/DaltonHart/Sassy-React#readme",
+  "dependencies": {
+    "colors": "^1.3.2",
+    "shelljs": "^0.8.2"
+  }
+}
