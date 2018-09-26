@@ -20,6 +20,7 @@ const run = async () => {
     await updateTemplates()
     console.log("All Done!".green)
 }
+
 // calls create react app with given name
 const createReactApp = () => {
     return new Promise(resolve => {
@@ -31,7 +32,7 @@ const createReactApp = () => {
         } else {
             console.log("\nNo app name was provided.".red)
             console.log("\nProvide an app name in the following format: ")
-            console.log("\ncreate-react-redux-router-app ", "app-name\n".cyan)
+            console.log("\nsassy-react ", "app-name\n".cyan)
             resolve(false)
         }
     })
@@ -60,6 +61,9 @@ const installPackages = () => {
 // update the template with given files inside the templates folder
 const updateTemplates = () => {
     return new Promise(resolve => {
+        shell.exec(`mkdir actions config`, () => {
+            console.log(`created dirs`.green)
+        })
         let promises = []
         Object.keys(templates).forEach((fileName, i) => {
             promises[i] = new Promise(res => {
