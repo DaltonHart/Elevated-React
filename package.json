@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DaltonHart/Sassy-React.git"
+    "url": "git+https://github.com/DaltonHart/Elevated-React.git"
   },
   "keywords": [
     "react",
@@ -17,9 +17,9 @@
   "author": "dalton daltonhart.j@gmail.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DaltonHart/Sassy-React/issues"
+    "url": "https://github.com/DaltonHart/Elevated-React/issues"
   },
-  "homepage": "https://github.com/DaltonHart/Sassy-React#readme",
+  "homepage": "https://github.com/DaltonHart/Elevated-React#readme",
   "dependencies": {
     "colors": "^1.3.2",
     "shelljs": "^0.8.2"
