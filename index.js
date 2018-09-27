@@ -4,8 +4,14 @@ let shell = require('shelljs')
 let colors = require('colors')
 let fs = require('fs')
 let templates = require('./templates/templates.js')
-let models = require('./models/models.js')
-let components = require('./components/components.js')
+let models = require('./templates/models/models.js')
+let components = require('./templates/components/components.js')
+let actions = require('./templates/actions/actions.js')
+let config = require('./templates/config/config.js')
+let constants = require('./templates/constants/constants.js')
+let containers = require('./templates/containers/containers.js')
+let reducers = require('./templates/reducers/reducers.js')
+let store = require('./templates/store/store.js')
 
 let appName = process.argv[2]
 let appDirectory = `${process.cwd()}/${appName}`
@@ -34,7 +40,7 @@ const makeDirs = () => {
             })
         })
         shell.cd(`${appDirectory}/src`)
-        shell.exec(`mkdir actions config components containers models reducers store`, () => {
+        shell.exec(`mkdir actions config constants components containers models reducers store`, () => {
             console.log(`created dirs`.green)
         })
         resolve()
@@ -106,6 +112,73 @@ const updateTemplates = () => {
                 console.log(`components made`)
             })
         })
+        Object.keys(actions).forEach((fileName, i) => {
+            promises[i] = new Promise(res => {
+                fs.writeFile(`${appDirectory}/src/actions/${fileName}`, actions[fileName], function (err) {
+                    if (err) {
+                        return console.log(err)
+                    }
+                    res()
+                })
+                console.log(`actions made`)
+            })
+        })
+        Object.keys(config).forEach((fileName, i) => {
+            promises[i] = new Promise(res => {
+                fs.writeFile(`${appDirectory}/src/config/${fileName}`, config[fileName], function (err) {
+                    if (err) {
+                        return console.log(err)
+                    }
+                    res()
+                })
+                console.log(`config made`)
+            })
+        })
+        Object.keys(constants).forEach((fileName, i) => {
+            promises[i] = new Promise(res => {
+                fs.writeFile(`${appDirectory}/src/constants/${fileName}`, constants[fileName], function (err) {
+                    if (err) {
+                        return console.log(err)
+                    }
+                    res()
+                })
+                console.log(`constants made`)
+            })
+        })
+        Object.keys(containers).forEach((fileName, i) => {
+            promises[i] = new Promise(res => {
+                fs.writeFile(`${appDirectory}/src/containers/${fileName}`, containers[fileName], function (err) {
+                    if (err) {
+                        return console.log(err)
+                    }
+                    res()
+                })
+                console.log(`containers made`)
+            })
+        })
+        Object.keys(reducers).forEach((fileName, i) => {
+            promises[i] = new Promise(res => {
+                fs.writeFile(`${appDirectory}/src/reducers/${fileName}`, reducers[fileName], function (err) {
+                    if (err) {
+                        return console.log(err)
+                    }
+                    res()
+                })
+                console.log(`reducers made`)
+            })
+        })
+        Object.keys(store).forEach((fileName, i) => {
+            promises[i] = new Promise(res => {
+                fs.writeFile(`${appDirectory}/src/store/${fileName}`, store[fileName], function (err) {
+                    if (err) {
+                        return console.log(err)
+                    }
+                    res()
+                })
+                console.log(`reducers made`)
+            })
+        })
+
         Promise.all(promises).then(() => {
             resolve()
         })
