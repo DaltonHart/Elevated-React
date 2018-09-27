@@ -1,3 +1,3 @@
 module.exports = {
-    'store.js': require('./index.js'),
+    'index.js': require('./index.js'),
   }

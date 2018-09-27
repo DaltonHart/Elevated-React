@@ -9,7 +9,12 @@ class Header extends Component {
         <Link to={'/'}>
           HOME
         </Link>
-
+        <Link to={'/'}>
+          Link
+        </Link>
+        <Link to={'/'}>
+          Link
+        </Link>
       </header>
     );
   }

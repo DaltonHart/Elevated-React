@@ -3,15 +3,17 @@
 let shell = require('shelljs')
 let colors = require('colors')
 let fs = require('fs')
-let templates = require('./templates/templates.js')
-let models = require('./templates/models/models.js')
-let components = require('./templates/components/components.js')
-let actions = require('./templates/actions/actions.js')
-let config = require('./templates/config/config.js')
-let constants = require('./templates/constants/constants.js')
-let containers = require('./templates/containers/containers.js')
-let reducers = require('./templates/reducers/reducers.js')
-let store = require('./templates/store/store.js')
+let templates = require('./templates/templates')
+let models = require('./templates/models/models')
+let components = require('./templates/components/components')
+let actions = require('./templates/actions/actions')
+let config = require('./templates/config/config')
+let constants = require('./templates/constants/constants')
+let containers = require('./templates/containers/containers')
+let reducers = require('./templates/reducers/reducers')
+let store = require('./templates/store/store')
+let sass = require('./templates/sass/sass')
+let sassComponents = require('./templates/sass/components/components')
 
 let appName = process.argv[2]
 let appDirectory = `${process.cwd()}/${appName}`
@@ -20,28 +22,25 @@ let appDirectory = `${process.cwd()}/${appName}`
 const run = async () => {
     let success = await createReactApp()
     if (!success) {
-        console.log('Something went wrong while trying to create a new React app using create-react-app'.red)
+        console.log(colors.bgRed('Something went wrong while trying to create a new React app using create-react-app'))
         return false;
     }
     await makeDirs()
     await installPackages()
     await updateTemplates()
-    console.log("All Done!".green)
+    console.log(colors.bgGreen("All Done!"))
 }
 // create dirs in folder structure 
 const makeDirs = () => {
     return new Promise(resolve => {
         shell.cd(appDirectory)
         shell.exec(`mkdir sass`, () => {
-            console.log(`created sass`.green)
             shell.cd(`${appDirectory}/sass`)
             shell.exec(`mkdir components`, () => {
-                console.log(`created sass components`.green)
             })
         })
         shell.cd(`${appDirectory}/src`)
         shell.exec(`mkdir actions config constants components containers models reducers store`, () => {
-            console.log(`created dirs`.green)
         })
         resolve()
     })
@@ -51,13 +50,13 @@ const createReactApp = () => {
     return new Promise(resolve => {
         if (appName) {
             shell.exec(`npx create-react-app ${appName}`, () => {
-                console.log("Created React App".green)
+                console.log(colors.bgGreen("Created React App"))
                 resolve(true)
             })
         } else {
-            console.log("\nNo app name was provided.".red)
+            console.log(colors.red("\nNo app name was provided.".red))
             console.log("\nProvide an app name in the following format: ")
-            console.log("\nsassy-react ", "app-name\n".cyan)
+            console.log(colors.green("\nsassy-react ", "app-name\n"))
             resolve(false)
         }
     })
@@ -66,10 +65,10 @@ const createReactApp = () => {
 // after move into folder install additional packages
 const installPackages = () => {
     return new Promise(resolve => {
-        console.log("\nInstalling redux, react-router, react-router-dom, react-redux, axios, and redux-thunk\n".green)
+        console.log(colors.bgMagenta("\nInstalling all packages.\n"))
         shell.cd(appDirectory)
         shell.exec(`npm install --save redux react-router react-redux redux-thunk react-router-dom axios`, () => {
-            console.log("\nFinished installing packages\n".green)
+            console.log(colors.bgMagenta("\nFinished installing packages!\n"))
             resolve()
         })
     })
@@ -87,7 +86,6 @@ const updateTemplates = () => {
                     }
                     res()
                 })
-                console.log(`templates made`)
             })
         })
         Object.keys(models).forEach((fileName, i) => {
@@ -98,7 +96,6 @@ const updateTemplates = () => {
                     }
                     res()
                 })
-                console.log(`models made`)
             })
         })
         Object.keys(components).forEach((fileName, i) => {
@@ -109,7 +106,6 @@ const updateTemplates = () => {
                     }
                     res()
                 })
-                console.log(`components made`)
             })
         })
         Object.keys(actions).forEach((fileName, i) => {
@@ -120,7 +116,6 @@ const updateTemplates = () => {
                     }
                     res()
                 })
-                console.log(`actions made`)
             })
         })
         Object.keys(config).forEach((fileName, i) => {
@@ -131,7 +126,6 @@ const updateTemplates = () => {
                     }
                     res()
                 })
-                console.log(`config made`)
             })
         })
         Object.keys(constants).forEach((fileName, i) => {
@@ -142,7 +136,6 @@ const updateTemplates = () => {
                     }
                     res()
                 })
-                console.log(`constants made`)
             })
         })
         Object.keys(containers).forEach((fileName, i) => {
@@ -153,7 +146,6 @@ const updateTemplates = () => {
                     }
                     res()
                 })
-                console.log(`containers made`)
             })
         })
         Object.keys(reducers).forEach((fileName, i) => {
@@ -164,7 +156,6 @@ const updateTemplates = () => {
                     }
                     res()
                 })
-                console.log(`reducers made`)
             })
         })
         Object.keys(store).forEach((fileName, i) => {
@@ -175,7 +166,26 @@ const updateTemplates = () => {
                     }
                     res()
                 })
-                console.log(`reducers made`)
+            })
+        })
+        Object.keys(sass).forEach((fileName, i) => {
+            promises[i] = new Promise(res => {
+                fs.writeFile(`${appDirectory}/sass/${fileName}`, sass[fileName], function (err) {
+                    if (err) {
+                        return console.log(err)
+                    }
+                    res()
+                })
+            })
+        })
+        Object.keys(sassComponents).forEach((fileName, i) => {
+            promises[i] = new Promise(res => {
+                fs.writeFile(`${appDirectory}/sass/components/${fileName}`, sassComponents[fileName], function (err) {
+                    if (err) {
+                        return console.log(err)
+                    }
+                    res()
+                })
             })
         })
 
