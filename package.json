@@ -1,6 +1,6 @@
 {
   "name": "elevated-react",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An extention of Create-React-App to include more features.",
   "main": "index.js",
   "scripts": {
