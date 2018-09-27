@@ -41,7 +41,7 @@ npm start
 
 *(npx comes with npm 5.2+ and higher)*
 
-##Structure
+## Structure
 
 File structure for organization is as so: 
 
