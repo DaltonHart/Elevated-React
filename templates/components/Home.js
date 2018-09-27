@@ -8,7 +8,7 @@ class Home extends Component {
     return (
       <div class="home">
         <h1> This is a Homepage!</h1>
-        <p>Thank you for using <b>APP NAME</b>!</p>
+        <h2>Thank you for using <b>Elevated React</b>!</h2>
         <p>To get started open the components folder inside the src folder.</p>
 
         <p>To configure redux you can view the actions, reducers, and store folders.</p>
