@@ -1,5 +1,5 @@
 {
-  "name": "sassy-react",
+  "name": "elevated-react",
   "version": "1.0.0",
   "description": "An extention of Create-React-App to include more features.",
   "main": "index.js",
@@ -25,6 +25,6 @@
     "shelljs": "^0.8.2"
   },
   "bin": {
-    "sassy-react": "index.js"
+    "elevated-react": "index.js"
   }
 }
