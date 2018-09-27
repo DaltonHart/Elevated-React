@@ -1,6 +1,8 @@
 # Elevated React
 
 [![npm version](https://badge.fury.io/js/elevated-react.svg)](https://badge.fury.io/js/elevated-react)
+![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)
+
 
 Elevated React is an extended [Create-React-App](https://github.com/facebook/create-react-app) with additional technology and organized file structure. Upon running the command an entire react application will be created with all the bells and whistles.
 
